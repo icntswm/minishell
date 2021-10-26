@@ -70,8 +70,15 @@ char	*check_dollar(t_data *data, char *str, int lenght_str, int cmd_len)
 				free(save_new);
 				free(save1);
 			}	
-			while (str[i] && str[i] != '$' && str[i] != ' ' && str[i] != 39 && str[i] != '|' && str[i] > 47)
+			while (str[i] && str[i] != '$' && str[i] != ' ' && str[i] != 39)
+			{
 				i++;
+				if ((str[i] > 47 && str[i] < 58) || (str[i] > 64 && str[i] < 91) || str[i] == 95 || (str[i] > 96 && str[i] < 123))
+				{
+				}
+				else
+					break ;
+			}
 			dollar = ft_substr(str, start, i - start);
 			// printf("dollar: %s\n", dollar);
 			dollar = search_envp_dollar(&(*data), dollar);
