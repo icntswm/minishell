@@ -142,6 +142,6 @@ void	envp_print(t_envp *list, int pointer);
 
 
 
-void	ft_export(t_data *data);
-void clean_export(t_envp *list);
+// void	ft_export(t_data *data);
+// void clean_export(t_envp *list);
 #endif
