@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*help_make_quotes(char *str, int i)
 {
@@ -9,17 +9,13 @@ char	*help_make_quotes(char *str, int i)
 
 	save1 = ft_substr(str, 0, i + 1);
 	save2 = ft_substr(str, i + 1, ft_strlen(str));
-	// printf("save1: %s\nsave2: %s\n\n", save1, save2);
 	save3 = ft_strjoin(save1, "\"");
-	// printf("save3: %s\n", save3);
 	free(save1);
 	save1 = ft_strjoin(save3, save2);
 	free(save2);
 	free(save3);
-	// printf("save1: %s\n", save1);
 	new = ft_strjoin(save1, "\"");
 	free(save1);
-	// printf("new: %s\n", new);
 	return (new);
 }
 

@@ -6,7 +6,7 @@ void    parser(t_data *data)
     data->error = NULL;
 	data->pos_pipe = NULL;
 	data->pipes = NULL;
-    remove_spaces(&(*data));	// удаление пробелов в первоначальной строке
+    remove_spaces_in_line(&(*data));	// удаление пробелов в первоначальной строке
     search_pipe_position(&(*data)); // определение количества пайпов с учетом кавычек
 	check_space_numfile(&(*data)); // проверка файла, название которого состоит из чисел
 	if (data->error == NULL)
@@ -41,12 +41,11 @@ void    parser(t_data *data)
 	{
 		cutting_file(&(*data)); // вырезание файлов из строки cmd
 		cutting_redirect(&(*data)); // вырезание редиректов < << <> >> > их строки cmd
-		list_cmd_print(data->pipes); // печать
+		// list_cmd_print(data->pipes); // печать
 	}
-	printf("=========================================================\n");
 	remove_spaces_cmd(&(*data));
-	handling_quotes_and_dollar(&(*data));
 	remove_spaces_file(&(*data));
+	quotes_and_dollar(&(*data));
 	list_cmd_print(data->pipes);
 	cleaning_pipe(data->pipes); 
 	cleaning_position_pipe(data->pos_pipe);

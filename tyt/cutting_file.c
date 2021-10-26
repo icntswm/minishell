@@ -34,11 +34,11 @@ void	cut_file(t_pipes *p, char redrct)
         save = q->pos;
         q = q->next;
         if (q != NULL)
-            start = save + end_file(p->cmd, ++save, q->pos - save);
+            start = save + 1 + end_file(p->cmd, save + 1, q->pos - save);
     }
     if (q == NULL)
     {
-        start = save + end_file(p->cmd, ++save, ft_strlen(p->cmd) - save);
+        start = save + 1 + end_file(p->cmd, save + 1, ft_strlen(p->cmd) - save);
         new_cmd = cut_in_cmd(new_cmd, p->cmd, start, ft_strlen(p->cmd) - start);
     }
     free(p->cmd);

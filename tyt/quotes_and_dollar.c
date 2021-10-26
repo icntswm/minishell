@@ -13,12 +13,12 @@ void    quot_file(t_pipes *list, t_data *data, char redrct)
     while (q != NULL)
     {
         save = q->filename;
-        q->filename = ft_quot(&(*data), save);
+        q->filename = handling_quotes(&(*data), save);
         q = q->next;
     }
 }
 
-void    handling_quotes_and_dollar(t_data *data)
+void    quotes_and_dollar(t_data *data)
 {
     t_pipes *p;
     char *save;
@@ -28,7 +28,7 @@ void    handling_quotes_and_dollar(t_data *data)
     while (p != NULL)
     {
         save = p->cmd;
-        p->cmd = ft_quot(&(*data), save);
+        p->cmd = handling_quotes(&(*data), save);
         if (p->infile)
             quot_file(p, &(*data), '<');
         if (p->outfile)

@@ -18,6 +18,28 @@ int	check_pipe_herdoc(t_data *data)
 	return(counter);
 }
 
+int		help_heredor_pipe(t_data *data)
+{
+	char *save_line;
+
+	save_line = NULL;
+	if (data->error == NULL)
+	{
+		cut_pipe(&(*data));
+		remove_spaces_pipe(&(*data));
+		check_inredirect(&(*data));
+		if (data->error == NULL)
+			check_outredirect(&(*data));
+		if (data->error == NULL)
+		{
+			save_line = data->line;
+			if (check_pipe_herdoc(&(*data)) == 0)
+				return (0);
+		}
+	}
+	return (1);
+}
+
 void	heredoc_pipe(t_data *data)
 {
 	char *save_line;
@@ -37,23 +59,11 @@ void	heredoc_pipe(t_data *data)
 			data->pos_pipe = NULL;
 			data->pipes = NULL;
 			data->line = new_line;
-			remove_spaces(&(*data));
+			remove_spaces_in_line(&(*data));
 			search_pipe_position(&(*data));
 			check_space_numfile(&(*data));
-			if (data->error == NULL)
-			{
-				cut_pipe(&(*data));
-				remove_spaces_pipe(&(*data));
-				check_inredirect(&(*data));
-				if (data->error == NULL)
-					check_outredirect(&(*data));
-				if (data->error == NULL)
-				{
-					save_line = data->line;
-					if (check_pipe_herdoc(&(*data)) == 0)
-						break ;
-				}
-			}
+			if (help_heredor_pipe(&(*data)) == 0)
+				break ;
 		}
 	}
 }

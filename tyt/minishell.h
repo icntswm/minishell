@@ -51,10 +51,13 @@ typedef struct s_data
 
 int     main(int argc, char **argv, char **envp);
 void	parser(t_data *data);
-void	remove_spaces(t_data *data);
-char	*ft_chartrim(char *s1, char set);
 void    search_pipe_position(t_data *data);
 t_pos 	*list_position(t_pos *list, int pos, int redirect);
+
+// remove spaces before
+void	remove_spaces_in_line(t_data *data);
+char	*ft_chartrim(char *s1, char set);
+
 
 //pipe cut
 void	cut_pipe(t_data *data);
@@ -90,16 +93,30 @@ int     end_file(char *str, int start, int len);
 void    cutting_redirect(t_data *data);
 void	clean_redirect(t_pipes **list);
 
-
+//remove spaces after
 void    remove_spaces_cmd(t_data *data);
-char	*ft_quot(t_data *data, char *str);
 void    remove_spaces_file(t_data *data);
 
-void    handling_quotes_and_dollar(t_data *data);
+//quotes and dollar
+void    quotes_and_dollar(t_data *data);
 
+//handling quotes
+char	*handling_quotes(t_data *data, char *str);
+
+//handling dollar
+//-----handling dollar 1
+char	*check_dollar(t_data *data, char *str, int lenght_str, int cmd_len);
+char	*help_check_dollar(char *str, char *new);
+int     dollar_change(char *str, char **new, int i, t_data *data);
+int     help_dollar_change(char *str, char **new, int i, char *dollar);
+char	*dollar_and_end_line(char *str, char *new, int i);
+//-----handling dollar 2
+char	*dollar_and_new_is_null(char *str, char *new, int i);
+char	*search_envp_dollar(t_data *data, char *dollar);
+int     compare_dollar_and_exp(char *exp, char *dollar);
 
 //error
-void    ft_error(t_data *data, char *error);
+// void    ft_error(t_data *data, char *error);
 
 //cleaning
 void	cleaning_position_pipe(t_pos *list);

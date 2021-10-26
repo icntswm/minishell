@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	remove_spaces(t_data *data)
+void	remove_spaces_in_line(t_data *data)
 {
 	char *save;
 	

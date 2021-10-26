@@ -23,7 +23,7 @@ void    list_cmd_print(t_pipes *list)
     while (p != NULL)
     {
         printf("---------------------------------------------------\n\n");
-        printf("cmd: |%s|\n\n", p->cmd);
+        printf("cmd: %s\n\n", p->cmd);
         i = 0;
         t = p->pos_outred;
         if (t)
