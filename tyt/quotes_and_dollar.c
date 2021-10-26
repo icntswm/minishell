@@ -22,13 +22,22 @@ void    quotes_and_dollar(t_data *data)
 {
     t_pipes *p;
     char *save;
+    int i;
 
     save = NULL;
     p = data->pipes;
     while (p != NULL)
     {
-        save = p->cmd;
-        p->cmd = handling_quotes(&(*data), save);
+        i = 0;
+        if (p->cmd_argv)
+        {
+            while (p->cmd_argv[i])
+            {
+                save = p->cmd_argv[i];
+                p->cmd_argv[i] = handling_quotes(&(*data), save);
+                i++;
+            }
+        }
         if (p->infile)
             quot_file(p, &(*data), '<');
         if (p->outfile)

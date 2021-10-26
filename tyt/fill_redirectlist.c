@@ -75,9 +75,9 @@ t_files	*fill_list(t_data *data, t_pipes *pipes, char redrct)
 	while (q != NULL)
 	{
 		if (q->next == NULL)
-			p = list_file(p, ft_substr(pipes->cmd, ++q->pos, end_file(pipes->cmd, q->pos, ft_strlen(pipes->cmd) - q->pos)), q->redirect);
+			p = list_file(p, ft_substr(pipes->cmd, q->pos, end_file(pipes->cmd, ++q->pos, ft_strlen(pipes->cmd) - q->pos)), q->redirect);
 		else
-			p = list_file(p, ft_substr(pipes->cmd, ++q->pos, end_file(pipes->cmd, q->pos, q->next->pos - q->pos)), q->redirect);
+			p = list_file(p, ft_substr(pipes->cmd, q->pos, end_file(pipes->cmd, ++q->pos, q->next->pos - q->pos)), q->redirect);
 		q->pos--;
 		q = q->next;
 	}

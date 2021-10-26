@@ -11,6 +11,7 @@ t_pipes *list_pipe(t_pipes *list, char *str)
 	{
 		p = (t_pipes *)malloc(sizeof(t_pipes));
 		p->cmd = str;
+		p->cmd_argv = NULL;
 		p->infile = NULL;
 		p->pos_inred = NULL;
         p->outfile = NULL;
@@ -26,6 +27,7 @@ t_pipes *list_pipe(t_pipes *list, char *str)
 		p->next = new_list;
 		p = save;
 		new_list->cmd = str;
+		new_list->cmd_argv = NULL;
 		new_list->infile = NULL;
 		new_list->pos_inred = NULL;
         new_list->outfile = NULL;

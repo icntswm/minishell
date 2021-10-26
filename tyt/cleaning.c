@@ -21,6 +21,7 @@ void	cleaning_pipe(t_pipes *list)
 	void	*save2;
 	t_pos	*pos_red;
 	t_files *file;
+	int i;
 
 	p = list;
 	while (p != NULL)
@@ -67,6 +68,16 @@ void	cleaning_pipe(t_pipes *list)
 				free(file);
 				file = save2;
 			}
+		}
+		i = 0;
+		if (p->cmd_argv)
+		{
+			while (p->cmd_argv[i])
+			{
+				free(p->cmd_argv[i]);
+				i++;
+			}
+			free(p->cmd_argv);
 		}
 		free(p->cmd);
 		free(p);

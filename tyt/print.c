@@ -76,6 +76,16 @@ void    list_cmd_print(t_pipes *list)
             }
             printf("\n");
         }
+        i = 0;
+        if (p->cmd_argv)
+        {
+            printf("CMD_ARGV\n");
+            while (p->cmd_argv[i])
+            {
+                printf("[%d]cmd_argv: %s\n", i, p->cmd_argv[i]);
+                i++;
+            }
+        }
         p = p->next;
     }
 }

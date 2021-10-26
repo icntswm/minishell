@@ -55,6 +55,20 @@ t_envp	*make_envp(t_envp *list, char **envp)
 	return (p);
 }
 
+void	ctrl_c(int status)
+{
+	printf("\b\b     \n");
+	rl_on_new_line();
+	rl_redisplay();
+}
+
+void	ctrl_slash(int status)
+{
+	printf("\b\b  ");
+	// rl_on_new_line();
+	rl_redisplay();
+}
+
 int main(int argc, char **argv, char **envp)
 {
     t_data data;
@@ -67,11 +81,13 @@ int main(int argc, char **argv, char **envp)
 	
 	// ft_env(&data);
 	ft_export(&data);
-
-    while (i < 1)
+	signal(SIGINT, ctrl_c);
+	signal(SIGQUIT, ctrl_slash);
+    while (i < 10)
     {
         data.line = readline("minishell$ ");
-        // if (data.line)
+        add_history(data.line);
+		// if (data.line)
             parser(&data);
         i++;
     }

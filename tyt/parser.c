@@ -45,6 +45,7 @@ void    parser(t_data *data)
 	}
 	remove_spaces_cmd(&(*data));
 	remove_spaces_file(&(*data));
+	make_cmd_argv(&(*data));
 	quotes_and_dollar(&(*data));
 	list_cmd_print(data->pipes);
 	cleaning_pipe(data->pipes); 
@@ -56,3 +57,7 @@ void    parser(t_data *data)
 		free(data->error);
 	}
 }
+
+// "export "'"""' "'lol'" "'<<owefk $PATH'" "$PA'TH">feil0 $'P'A'T'H>"'f'ei'l4'" $USER $
+
+//поправил ls -l >| wer и ls -l >|wer

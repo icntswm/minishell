@@ -15,6 +15,12 @@ void    help_remove_space_file(t_pipes *list, char redrct)
         save = q->filename;
         q->filename = ft_chartrim(save, ' ');
         free(save);
+        save = q->filename;
+        q->filename = ft_chartrim(save, '|');
+        free(save);
+        save = q->filename;
+        q->filename = ft_chartrim(save, ' ');
+        free(save);
         q = q->next;
     }
 }

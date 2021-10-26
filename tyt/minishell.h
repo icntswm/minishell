@@ -4,7 +4,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 # include "libft/libft.h"
+# include <signal.h>
 
 typedef struct s_files
 {
@@ -30,7 +32,8 @@ typedef struct s_envp
 typedef struct s_pipes
 {
     
-    char *cmd;
+    char    *cmd;
+    char    **cmd_argv;
     t_files *infile;
     t_files *outfile;
     t_pos   *pos_outred;
@@ -115,8 +118,14 @@ char	*dollar_and_new_is_null(char *str, char *new, int i);
 char	*search_envp_dollar(t_data *data, char *dollar);
 int     compare_dollar_and_exp(char *exp, char *dollar);
 
+
+void    make_cmd_argv(t_data *data);
+
+
+
+
 //error
-// void    ft_error(t_data *data, char *error);
+void    ft_error(t_data *data, char *error);
 
 //cleaning
 void	cleaning_position_pipe(t_pos *list);
@@ -142,6 +151,6 @@ void	envp_print(t_envp *list, int pointer);
 
 
 
-// void	ft_export(t_data *data);
-// void clean_export(t_envp *list);
+void	ft_export(t_data *data);
+void clean_export(t_envp *list);
 #endif
