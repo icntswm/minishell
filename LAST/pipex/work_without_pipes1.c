@@ -66,7 +66,7 @@ static	int	exec_process(int pid, t_data *data, char **cmd, char ***envp)
 	int	status;
 
 	if (cmd != NULL && (ft_strncmp(cmd[0], \
-		"./a.out", ft_strlen("./a.out")) == 0))
+		"./minishell", ft_strlen("./minishell")) == 0))
 	{
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);

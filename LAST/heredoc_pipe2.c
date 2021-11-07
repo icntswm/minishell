@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:53 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:24:54 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/07 15:48:12 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	search_pipe_herdoc(t_data *data)
 
 void	have_heredoc_pipe(t_data *data, int file1)
 {
-	cleaning_position_pipe(data->pos_pipe);
-	cleaning_pipe(data->pipes);
+	clean_position(data->pos_pipe);
+	cleaning_all(data->pipes);
 	data->col_pipes = 0;
 	data->error = NULL;
 	data->pos_pipe = NULL;

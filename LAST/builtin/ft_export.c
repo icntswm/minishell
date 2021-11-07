@@ -1,61 +1,27 @@
 #include "../minishell.h"
 
-static int	check_is_there_value(char *str)
+int	help_change_list_envp(t_envp *temp1, char *v, char *var)
 {
-	int		i;
-
-	i = 0;
-	if (str[i] == '=')
+	if ((ft_strncmp(temp1->var, v, ft_strlen(v) + 1) == '=') || \
+		(ft_strncmp(temp1->var, v, ft_strlen(v) + 1) == '\0'))
 	{
-		ft_putstr_fd("minishell: export: ", 2);
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd(": wrong variable.\n", 2);
-		return (-1);
-	}
-	while (str[i])
-	{
-		if (str[i] == '=')
-			return (1);
-		i++;
+		free(temp1->var);
+		temp1->var = var;
+		free(v);
+		return (1);
 	}
 	return (0);
 }
 
-static int	check_existance(t_envp *list, char *var)
-{
-	char	*var_name;
-
-	var_name = find_var_name(var);
-	while (list)
-	{
-		if ((ft_strncmp(list->var, var_name, \
-			ft_strlen(var_name) + 1) == '\0') || \
-			(ft_strncmp(list->var, var_name, ft_strlen(var_name) + 1) == '='))
-		{
-			free(var_name);
-			return (1);
-		}
-		list = list->next;
-	}
-	free(var_name);
-	return (0);
-}
-
-static int	change_list_envp(t_envp *temp1, char *var)
+int	change_list_envp(t_envp *temp1, char *var)
 {
 	char	*v;
 
 	if (!temp1)
 		return (0);
 	v = find_var_name(var);
-	if ((ft_strncmp(temp1->var, v, ft_strlen(v) + 1) == '=') || \
-		(ft_strncmp(temp1->var, v, ft_strlen(v) + 1) == '\0'))
-	{
-		free(temp1->var);
-		temp1->var = ft_strdup(var);
-		free(v);
+	if (help_change_list_envp(temp1, v, var) == 1)
 		return (1);
-	}
 	while (temp1->next)
 	{
 		if ((ft_strncmp(temp1->next->var, v, ft_strlen(v) + 1) == '=') || \
@@ -72,7 +38,25 @@ static int	change_list_envp(t_envp *temp1, char *var)
 	return (0);
 }
 
-static int	export_cycle(char *str, int res, t_data *data, char **cmd)
+void	help_export_cycle(t_data *data, char *str, char **cmd)
+{
+	char	*save_str;
+
+	str = ft_strdup(*cmd);
+	save_str = ft_strdup(*cmd);
+	if (!change_list_envp(data->exp, str))
+	{
+		add_list_envp(data->exp, str);
+		free(str);
+	}
+	if (!change_list_envp(data->env, save_str))
+	{
+		add_list_envp(data->env, save_str);
+		free(save_str);
+	}	
+}
+
+int	export_cycle(char *str, int res, t_data *data, char **cmd)
 {
 	char	*save_str;
 
@@ -92,20 +76,7 @@ static int	export_cycle(char *str, int res, t_data *data, char **cmd)
 		}
 	}
 	else
-	{
-		str = ft_strdup(*cmd);
-		save_str = ft_strdup(*cmd);
-		if (!change_list_envp(data->exp, str))
-		{
-			add_list_envp(data->exp, str);
-			free(str);
-		}
-		if (!change_list_envp(data->env, save_str))
-		{
-			add_list_envp(data->env, save_str);
-			free(save_str);
-		}	
-	}
+		help_export_cycle(data, str, cmd);
 	return (0);
 }
 

@@ -6,29 +6,11 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:56 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:24:57 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/07 15:50:00 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "minishell.h"
-
-int	check_heredoc_eof(char *name)
-{
-	char	*str;
-	int		file;
-
-	file = open(name, O_RDONLY, 0644);
-	get_next_line(file, &str);
-	if (str[0] == '\0')
-	{
-		close(file);
-		free(str);
-		return (1);
-	}
-	free(str);
-	close(file);
-	return (0);
-}
 
 int	help_red_file(int col, char *name, char *fname)
 {

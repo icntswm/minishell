@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:25:44 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:25:45 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/07 16:43:43 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,6 @@ void	ctrl_c(int status)
 void	ctrl_slash(int status)
 {
 	printf("\b\b  \b\b");
-}
-
-void	make_heredoc_question_error(int num)
-{
-	int		file;
-	char	*str;
-
-	str = NULL;
-	file = open("quest_error", O_CREAT | O_TRUNC | O_RDWR, 0644);
-	str = ft_itoa(num);
-	write(file, str, ft_strlen(str));
-	close(file);
-	free(str);
 }
 
 void	ctrl_c_redirect_heredoc(int status)

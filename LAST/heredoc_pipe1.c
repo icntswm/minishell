@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:48 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:24:49 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/07 15:48:00 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	heredoc_pipe_make_file(t_data *data)
 		close(file);
 	}
 	free(data->line);
-	cleaning_pipe(data->pipes);
-	cleaning_position_pipe(data->pos_pipe);
+	cleaning_all(data->pipes);
+	clean_position(data->pos_pipe);
 }
 
 void	heredoc_pipe_proccess(t_data *data, char **save_line)
@@ -92,8 +92,8 @@ void	heredoc_pipe_proccess(t_data *data, char **save_line)
 		new_line = ft_strjoin(*save_line, data->line);
 		free(data->line);
 		free(*save_line);
-		cleaning_position_pipe(data->pos_pipe);
-		cleaning_pipe(data->pipes);
+		clean_position(data->pos_pipe);
+		cleaning_all(data->pipes);
 		data->col_pipes = 0;
 		data->pos_pipe = NULL;
 		data->pipes = NULL;

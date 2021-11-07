@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:23:59 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:24:00 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/07 16:46:45 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,6 @@ void	make_array(char ***arr)
 	free(array);
 }
 
-void	cleaning_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
 void	init_get_pid(t_data *data, char **arr_cmd, char **arr_pid)
 {
 	int	j;
@@ -103,8 +90,8 @@ void	init_get_pid(t_data *data, char **arr_cmd, char **arr_pid)
 		j++;
 	}
 	data->get_pid = ft_atoi(arr_pid[check]);
-	cleaning_arr(arr_cmd);
-	cleaning_arr(arr_pid);
+	free_array(arr_cmd);
+	free_array(arr_pid);
 }
 
 void	get_pid1(char ***arr, char **envp, char *arg)
@@ -131,7 +118,7 @@ void	get_pid1(char ***arr, char **envp, char *arg)
 	if (pid == 0)
 		exit (0);
 	make_array(arr);
-	cleaning_arr(ps);
+	free_array(ps);
 }
 
 void	get_pid(t_data *data, char **envp)

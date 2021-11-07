@@ -6,11 +6,35 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:36 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:24:37 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/07 18:22:27 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*dollar_and_end_line(char *str, char *new, int i)
+{
+	char	*save1;
+	char	*save_new;
+
+	save1 = NULL;
+	save_new = NULL;
+	if (new == NULL)
+	{
+		save1 = ft_substr(str, 0, i + 1);
+		save_new = new;
+		new = ft_strjoin(save_new, save1);
+		free(save_new);
+		free(save1);
+	}
+	else
+	{
+		save_new = new;
+		new = ft_strjoin(save_new, "$");
+		free(save_new);
+	}
+	return (new);
+}
 
 char	*help_dollar_quest(int question)
 {
@@ -40,8 +64,8 @@ int	dollar_question(int i, char *str, char **new)
 	char	*save3;
 	int		start;
 
-	save1 = help_dollar_quest(question);
-	question = 127;
+	save1 = help_dollar_quest(g_question);
+	g_question = 127;
 	start = ++i;
 	while (str[i] && str[i] != '$')
 		i++;
