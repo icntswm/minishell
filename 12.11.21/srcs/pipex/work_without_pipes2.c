@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:29 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/11 19:53:05 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/12 17:38:50 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_for_dir(char *cmd, char **path)
 	if (is_there_slash(cmd))
 	{
 		stat(cmd, &stat_info);
-		if (S_ISDIR(stat_info.st_mode))
+		if (access(cmd, F_OK) == 0 && S_ISDIR(stat_info.st_mode))
 		{
 			ft_putstr_fd("minishell1: '", 2);
 			ft_putstr_fd(cmd, 2);

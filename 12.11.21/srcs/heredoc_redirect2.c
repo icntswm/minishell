@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:59 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/10 21:24:48 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/12 17:15:35 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,12 @@ void	error_heredoc_redrct_ctrl_d(char *name, int col)
 
 	save1 = NULL;
 	save2 = NULL;
-	save1 = ft_strjoin(
-			"warning: here-document delimited by end-of-file (wanted '", name);
+	if (name != NULL)
+		save1 = ft_strjoin("warning: here-document \
+delimited by end-of-file (wanted '", name);
+	else
+		save1 = ft_strdup("warning: here-document \
+delimited by end-of-file (wanted '");
 	save2 = ft_strjoin(save1, "')");
 	file = open("heredoc_error", O_CREAT | O_TRUNC | O_RDWR, 0644);
 	write(file, save2, ft_strlen(save2));
@@ -80,8 +84,9 @@ int	check_str(int file, char *str, char *fname, int col)
 		error_heredoc_redrct_ctrl_d(fname, col);
 		return (-1);
 	}
-	if (ft_strncmp(fname, str, ft_strlen(str)) == 0 && ft_strlen(str) > 0
-		&& ft_strlen(str) == ft_strlen(fname))
+	if ((fname == NULL && str[0] == '\0') || (fname != NULL && ft_strncmp(\
+fname, str, ft_strlen(str)) == 0 && ft_strlen(str) > 0
+			&& ft_strlen(str) == ft_strlen(fname)))
 	{
 		col--;
 		file = open("heredoc_col", O_CREAT | O_TRUNC | O_RDWR, 0644);

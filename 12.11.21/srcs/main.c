@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:26:26 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/10 23:08:22 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/12 17:26:48 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,22 @@ int	main_process(t_data *data, char ***envp)
 	return (0);
 }
 
+void	free_mnshll(char ***envp, t_data *data)
+{
+	free_array(*envp);
+	clean_exp_env(data->env);
+	clean_exp_env(data->exp);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
 	if (argc > 1 || argv[1] != NULL)
+	{
+		printf("minishell: too many arguments\n");
 		return (1);
+	}
 	// rl_catch_signals = 0;
 	g_question = 0;
 	data.get_pid = 0;
@@ -62,8 +72,6 @@ int	main(int argc, char **argv, char **envp)
 		if (main_process(&data, &envp) == 1)
 			break ;
 	}
-	free_array(envp);
-	clean_exp_env(data.env);
-	clean_exp_env(data.exp);
+	free_mnshll(&envp, &data);
 	return (0);
 }
