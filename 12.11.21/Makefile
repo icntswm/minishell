@@ -7,7 +7,8 @@ FLAGS = -Wall -Wextra -Werror -g -I includes/ -I libft/
 LIBFT = -L libft/ -lft
 
 HEADERS = includes/minishell.h\
-			includes/get_next_line.h
+			includes/get_next_line.h\
+			libft/libft.h
 
 PIPEX_SRC = ft_split.c\
 			funcs_for_pipe_fds.c\
@@ -73,11 +74,11 @@ OBJ = $(SRC:c=o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADERS)
+$(NAME): $(OBJ)
 	make -C libft/
 	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lreadline -L/Users/$(USER)/.brew/Cellar/readline/8.1.1/lib/ -I/Users/$(USER)/.brew/Cellar/readline/8.1.1/include
 
-%.o: %.c
+%.o: %.c $(HEADERS)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
