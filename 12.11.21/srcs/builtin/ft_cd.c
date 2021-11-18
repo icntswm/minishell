@@ -67,9 +67,11 @@ int	help_cd(t_data *data, char **cmd, char *pwd_buf, char ***envp)
 	else
 	{
 		cwd = getcwd(pwd_buf, 0);
-		status = export_str(data, "PWD", cwd, envp);
 		if (cwd)
+		{
+			status = export_str(data, "PWD", cwd, envp);
 			free(cwd);
+		}
 	}
 	return (status);
 }

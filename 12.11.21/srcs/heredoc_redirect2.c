@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:59 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/12 17:15:35 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/18 16:36:01 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_heredoc_eof(char *name)
 
 	file = open(name, O_RDONLY, 0644);
 	get_next_line(file, &str);
-	if (str[0] == '\0')
+	if (str[0] == EOF)
 	{
 		close(file);
 		free(str);

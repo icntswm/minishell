@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_redirect1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:56 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/08 21:29:34 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:34:48 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	help_red_file(int col, char *name, char *fname)
 		}
 		if ((check_str(file, str, fname, col)) == -1)
 			break ;
-		if (col == 1 && ft_strlen(str) > 0)
+		if (col == 1)
 		{
 			write(file, str, ft_strlen(str));
 			write(file, "\n", 1);

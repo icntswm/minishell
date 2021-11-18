@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 18:27:39 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/12 00:58:11 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/18 16:39:26 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ char	**ftt_split(char const *s, char c)
 {
 	char	**strs;
 
+	// if (!s)
+		// exit(EXIT_FAILURE);
 	if (!s)
-		exit(EXIT_FAILURE);
-//	if (!s)
-//		return(NULL);//если написать вместо верхнего условия это, то все ок
+		return (NULL);//если написать вместо верхнего условия это, то все ок
 	strs = malloc((ft_countwords(s, c) + 1) * sizeof(char *));
 	if (!strs)
 		exit(EXIT_FAILURE);
