@@ -1,0 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/26 17:36:57 by fkenned           #+#    #+#             */
+/*   Updated: 2021/11/06 17:48:10 by fkenned          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#	include "libft.h"
+
+static int	ft_str_chr(const char *str, char a)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{	
+		if (str[i] == a)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*str;
+	size_t	start;
+	size_t	end;
+	size_t	i;
+
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	end = ft_strlen(s1);
+	start = 0;
+	i = 0;
+	while (s1[start] && ft_str_chr(set, s1[start]))
+		start++;
+	while (end > start && ft_str_chr(set, s1[end - 1]))
+		end--;
+	str = (char *)malloc(end - start + 1);
+	if (str == NULL)
+		return (NULL);
+	while (start < end)
+	{
+		str[i] = s1[start];
+		i++;
+		start++;
+	}
+	str[i] = '\0';
+	return (str);
+}
