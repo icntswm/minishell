@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+         #
+#    By: fkenned <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/26 17:38:29 by fkenned           #+#    #+#              #
-#    Updated: 2021/11/12 18:11:44 by fkenned          ###   ########.fr        #
+#    Updated: 2021/04/26 17:38:30 by fkenned          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,6 @@ B_SRCS	=	ft_lstnew.c		\
 
 OBJS	=	${SRCS:.c=.o}
 
-L_HEAD	=	libft.h
-
 B_OBJS	=	${B_SRCS:.c=.o}
 
 NAME	=	libft.a
@@ -66,10 +64,10 @@ RM		=	rm -f
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 
-%.o: %.c	${L_HEAD}
+.c.o:
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
+${NAME}:	${OBJS} libft.h
 			ar rc ${NAME} ${OBJS}
 			ranlib ${NAME}
 

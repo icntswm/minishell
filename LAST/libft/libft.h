@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 17:38:05 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 17:54:14 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/12 18:15:48 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ char		*ft_strdup(const char *str);
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlcat(char *dst, const char *src, size_t lenght);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
-size_t		ft_strlen(const char *str);
+int			ft_strlen(const char *str);
 int			ft_strncmp(const char *str1, const char *str2, size_t lenght);
 char		*ft_strnstr(const char *big, const char *little, size_t lenght);
 char		*ft_strrchr(const char *str, int a);
 char		*ft_strtrim(char const *s1, char const *set);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_substr(char const *s, unsigned int start, int len);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
 void		ft_putchar_fd(char c, int fd);
