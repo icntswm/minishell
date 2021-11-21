@@ -62,6 +62,7 @@ MAIN_SRC = check_in_out_utils.c\
 			search_pipe_position.c\
 			search_redirect_position.c\
 			signals.c\
+			small_utils.c\
 			handling_quotes_for_double_inred.c\
 
 SRC = $(addprefix srcs/pipex/, $(PIPEX_SRC))\

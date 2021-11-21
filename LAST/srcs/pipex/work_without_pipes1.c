@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:26 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/12 01:03:11 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/22 00:21:53 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ static	int	exec_process(int pid, t_data *data, char **cmd, char ***envp)
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);
 	}
-	else
-		signal(SIGINT, ctrl_c_fork);
 	if (pid == 0)
 	{
 		no_pipes_dupping(data);
@@ -115,10 +113,13 @@ int	work_without_pipes(t_data *data, char ***envp)
 			return (ret);
 	}
 	pid = fork();
+	signal(SIGINT, ctrl_c_fork);
+	signal(SIGQUIT, ctrl_slash_fork);
 	status = exec_process(pid, data, cmd, envp);
 	signal(SIGINT, ctrl_c);
+	signal(SIGQUIT, ctrl_slash);
 	unlink_here_doc_files(data);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
-	return (130);
+	return (check_ctrl_return(status));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:18:23 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/09 18:22:06 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/21 23:37:57 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int	ft_exit(char **cmd)
 	{
 		if (cmd[2] == NULL)
 			exit(ft_atoi(cmd[1]) % 256);
-		ft_putstr_fd("Too many arguments for exit.\n", 2);
+		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 		return (1);
 	}
 	else
 	{
-		ft_putstr_fd("Not numeric argument.\n", 2);
-		exit(255);//check in linux!!!!!!!!!
+		ft_putstr_fd("minishell: exit: not numeric argument\n", 2);
+		exit(2);
 	}
 	return (0);
 }

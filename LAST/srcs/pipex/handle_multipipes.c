@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_multipipes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:22 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/09 18:30:32 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/22 00:12:00 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ int	handle_multipipes(t_data *data, char ***envp, int **fd, int *pid)
 	int	i;
 
 	i = 0;
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, ctrl_c_fork);
+	signal(SIGQUIT, ctrl_slash_fork);
 	while (i < data->col_pipes + 1)
 	{
 		pid[i] = fork();
 		if (pid[i] == 0)
 		{
-			signal(SIGINT, ctrl_c_fork);
 			child_process(data, envp, i, fd);
 		}
 		else if (pid[i] < 0)

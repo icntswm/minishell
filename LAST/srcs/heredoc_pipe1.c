@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_pipe1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 18:07:46 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/21 18:07:47 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/21 23:47:51 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,11 @@ void	check_status(int status)
 {
 	if (WEXITSTATUS(status) == 1)
 		g_question = -1;
-	if (WEXITSTATUS(status) == 0)
+	else if (WEXITSTATUS(status) == 130)
+		g_question = 130;
+	else if (WEXITSTATUS(status) == 0)
 		if (access(".heredoc_error", F_OK) == 0)
-			g_question = -258;
+			g_question = -2;
 }
 
 void	heredoc_pipe(t_data *data)

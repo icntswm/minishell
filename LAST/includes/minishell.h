@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 18:28:47 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/21 18:32:41 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/22 00:21:29 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ void	ctrl_c_redirect_heredoc(int status);
 void	ctrl_c_pipe_heredoc(int status);
 void	ctrl_slash(int status);
 void	ctrl_c_fork(int status);
+void	ctrl_slash_fork(int status);
+int		check_ctrl_return(int status);
 //cutting out filenames with redirects
 void	cutting_file(t_data *data);
 //cutting out redirects
@@ -223,6 +225,6 @@ int		unlink_here_doc_files(t_data *data);
 int		pipex(t_data *data, char ***envp);
 
 //без этого не видит функци
-int		rl_replace_line(char *str, int num);
+// int		rl_replace_line(char *str, int num);
 
 #endif

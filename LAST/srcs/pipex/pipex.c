@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:24 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/09 18:31:20 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/22 00:23:01 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ int	pipex(t_data *data, char ***envp)
 	while (i < data->col_pipes + 1)
 		waitpid(pid[i++], &status, 0);
 	signal(SIGINT, ctrl_c);
+	signal(SIGQUIT, ctrl_slash);
 	unlink_here_doc_files(data);
 	free_fds(data->col_pipes, fd);
 	free(pid);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
-	return (130);
+	return (check_ctrl_return(status));
 }

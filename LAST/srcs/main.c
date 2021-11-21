@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:26:26 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/21 18:47:17 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/21 23:40:06 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main_process(t_data *data, char ***envp)
 	if (data->line[0] != '\0')
 	{
 		parser(&(*data));
-		if (data->line[0] != '\0' && !(g_question == -258 || g_question == -1)
+		if (data->line[0] != '\0' && !(g_question == -2 || g_question == -1)
 			&& data->error == NULL)
 			g_question = pipex(&(*data), envp);
 		else
@@ -30,7 +30,7 @@ int	main_process(t_data *data, char ***envp)
 			unlink_here_doc_files(&(*data));
 			free(data->error);
 		}
-		if (g_question == -1 || g_question == -258)
+		if (g_question == -1 || g_question == -2)
 			g_question = -g_question;
 		free(data->line);
 		clean_position(data->pos_pipe);

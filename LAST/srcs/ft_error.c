@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:33 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/08 21:37:06 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/22 00:25:21 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	ft_error(t_data *data, char *error)
 		data->error = ft_strdup("syntax error near unexpected token '||'");
 	else if (ft_strncmp("quotes", error, ft_strlen("quotes")) == 0)
 		data->error = ft_strdup("unclosed quotes found");
-	g_question = 258;//на линуксе 2 вроде
+	g_question = 2;
 }

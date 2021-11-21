@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:20 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/18 16:37:34 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/21 23:34:15 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	open_outfile(char *filename, int mode)
 	if (fd == -1)
 	{
 		perror(filename);
-		exit(1);/////////linux
+		exit(1);
 	}
 	return (fd);
 }
@@ -96,7 +96,7 @@ static int	open_infile(char *filename, int mode, int i)
 	{
 		write(2, "minishell: ", 11);
 		perror(filename);
-		exit(1);/////////////linux
+		exit(1);
 	}
 	return (fd);
 }
