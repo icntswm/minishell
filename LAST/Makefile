@@ -76,7 +76,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lreadline -L/Users/$(USER)/.brew/Cellar/readline/8.1.1/lib/ -I/Users/$(USER)/.brew/Cellar/readline/8.1.1/include
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lreadline
 
 %.o: %.c $(HEADERS)
 	$(CC) $(FLAGS) -c $< -o $@
