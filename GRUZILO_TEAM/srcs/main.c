@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:26:26 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/18 16:31:25 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/21 18:47:17 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv, char **envp)
 	signal(SIGINT, ctrl_c);
 	while (isatty(0))
 	{
-		data.line = readline("MINISHELL$ ");
+		data.line = readline("Minishell$ ");
 		add_history(data.line);
 		if (main_process(&data, &envp) == 1)
 			break ;
