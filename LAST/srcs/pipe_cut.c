@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:25:21 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:25:22 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:13:32 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	list_pipe_second(t_pipes *p, char *str, int num)
 
 	save = p;
 	new_list = (t_pipes *)malloc(sizeof(t_pipes));
+	if (!new_list)
+		error_malloc(1);
 	while (p->next != NULL)
 		p = p->next;
 	p->next = new_list;
@@ -41,6 +43,8 @@ t_pipes	*list_pipe(t_pipes *list, char *str, int num)
 	if (!p)
 	{
 		p = (t_pipes *)malloc(sizeof(t_pipes));
+		if (!p)
+			error_malloc(1);
 		p->num = num;
 		p->cmd = str;
 		p->cmd_argv = NULL;

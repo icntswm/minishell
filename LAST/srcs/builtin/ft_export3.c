@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:18:55 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/11 20:05:42 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:18:31 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**make_new_envp(char **envp)
 		i++;
 	tmp = malloc((i + 1) * sizeof(char *));
 	if (!tmp)
-		exit(EXIT_FAILURE);
+		error_malloc(1);
 	i = 0;
 	while (envp[i])
 	{
@@ -98,7 +98,7 @@ char	**refresh_envp(t_envp *env, char ***envp)
 	free_array(*envp);
 	new = malloc((i + 1) * sizeof(char *));
 	if (!new)
-		exit(EXIT_FAILURE);
+		error_malloc(1);
 	i = 0;
 	while (env)
 	{

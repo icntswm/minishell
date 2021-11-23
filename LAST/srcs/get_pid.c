@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:23:59 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/07 16:46:45 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 16:56:39 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	make_array2(char ***arr, char *array)
 	col = 0;
 	start = 0;
 	end = 0;
-	while (i < ft_strlen(array))
-		if (array[i++] == '\n')
-			col++;
+	col = search_slash_n(array);
 	ar = (char **)malloc(sizeof(char *) * (col + 1));
+	if (!ar)
+		error_malloc(1);
 	i = 0;
 	while (i < col)
 	{
@@ -101,6 +101,8 @@ void	get_pid1(char ***arr, char **envp, char *arg)
 	pid_t	pid;
 
 	ps = (char **)malloc(sizeof(char *) * 4);
+	if (!ps)
+		error_malloc(1);
 	ps[0] = ft_strdup("ps");
 	ps[1] = ft_strdup("-o");
 	ps[2] = ft_strdup(arg);

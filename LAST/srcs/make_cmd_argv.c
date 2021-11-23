@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:25:04 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:25:05 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:24:10 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	fill_cmd_argv(char *str, char ***cmd_argv)
 	start = 0;
 	size = check_size_argv(str);
 	array = (char **)malloc(sizeof(char *) * (size + 2));
+	if (!array)
+		error_malloc(1);
 	while (j < size + 1)
 	{
 		i = help_fill_argv(str, i);

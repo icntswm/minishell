@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:33 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/22 00:25:21 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:12:04 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,15 @@ void	ft_error(t_data *data, char *error)
 	else if (ft_strncmp("quotes", error, ft_strlen("quotes")) == 0)
 		data->error = ft_strdup("unclosed quotes found");
 	g_question = 2;
+}
+
+void	error_malloc(int check)
+{
+	if (check == 1)
+	{
+		ft_putstr_fd("minishell: malloc: ", 2);
+		ft_putstr_fd("memory allocation error\n", 2);
+		g_question = 1;
+		exit (1);
+	}
 }

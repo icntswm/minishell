@@ -3,39 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   make_env_and_exp_lists.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:20:59 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/09 18:21:00 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:58:04 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_envp	*add_list_envp(t_envp *list, char *str)
+void	add_list_envp_second(t_envp *list, char *str_env)
 {
 	t_envp	*new_list;
 	void	*save;
+
+	save = list;
+	new_list = (t_envp *)malloc(sizeof(t_envp));
+	if (!new_list)
+		error_malloc(1);
+	while (list->next != NULL)
+		list = list->next;
+	list->next = new_list;
+	list = save;
+	new_list->var = str_env;
+	new_list->next = NULL;
+}
+
+t_envp	*add_list_envp(t_envp *list, char *str)
+{
 	char	*str_env;
 
 	str_env = ft_strdup(str);
 	if (!list)
 	{
 		list = (t_envp *)malloc(sizeof(t_envp));
+		if (!list)
+			error_malloc(1);
 		list->var = str_env;
 		list->next = NULL;
 	}
 	else
-	{
-		save = list;
-		new_list = (t_envp *)malloc(sizeof(t_envp));
-		while (list->next != NULL)
-			list = list->next;
-		list->next = new_list;
-		list = save;
-		new_list->var = str_env;
-		new_list->next = NULL;
-	}
+		add_list_envp_second(list, str_env);
 	return (list);
 }
 

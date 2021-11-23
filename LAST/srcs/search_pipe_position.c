@@ -6,38 +6,46 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:25:37 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:25:38 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:27:54 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "minishell.h"
 
+void	list_position_second(t_pos *p, int pos, int redirect)
+{
+	t_pos	*new_list;
+	void	*save;
+
+	save = p;
+	new_list = (t_pos *)malloc(sizeof(t_pos));
+	if (!new_list)
+		error_malloc(1);
+	while (p->next != NULL)
+		p = p->next;
+	p->next = new_list;
+	p = save;
+	new_list->pos = pos;
+	new_list->red = redirect;
+	new_list->next = NULL;
+}
+
 t_pos	*list_position(t_pos *list, int pos, int redirect)
 {
 	t_pos	*p;
-	t_pos	*new_list;
-	void	*save;
 
 	p = list;
 	if (p == NULL)
 	{
 		p = (t_pos *)malloc(sizeof(t_pos));
+		if (!p)
+			error_malloc(1);
 		p->pos = pos;
 		p->red = redirect;
 		p->next = NULL;
 	}
 	else
-	{
-		save = p;
-		new_list = (t_pos *)malloc(sizeof(t_pos));
-		while (p->next != NULL)
-			p = p->next;
-		p->next = new_list;
-		p = save;
-		new_list->pos = pos;
-		new_list->red = redirect;
-		new_list->next = NULL;
-	}
+		list_position_second(p, pos, redirect);
 	return (p);
 }
 

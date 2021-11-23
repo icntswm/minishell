@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 17:34:24 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 17:49:00 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 14:53:09 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		str = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	else
 		str = (char *)malloc(sizeof(char) * (len_s2 + 1));
+	if (!str)
+		return (NULL);
 	if (s1 != NULL)
-	{
 		while (s1[i])
 			str[j++] = s1[i++];
-	}
 	i = 0;
 	while (s2[i])
 		str[j++] = s2[i++];

@@ -6,38 +6,46 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:30 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/11 19:54:36 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:30:35 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	list_file_second(t_files *p, char *str, int redirect)
+{
+	t_files	*new_list;
+	void	*save;
+
+	save = p;
+	new_list = (t_files *)malloc(sizeof(t_files));
+	if (!new_list)
+		error_malloc(1);
+	while (p->next != NULL)
+		p = p->next;
+	p->next = new_list;
+	p = save;
+	new_list->filename = str;
+	new_list->mode = redirect;
+	new_list->next = NULL;
+}
+
 t_files	*list_file(t_files *list, char *str, int redirect)
 {
 	t_files	*p;
-	t_files	*new_list;
-	void	*save;
 
 	p = list;
 	if (!p)
 	{
 		p = (t_files *)malloc(sizeof(t_files));
+		if (!p)
+			error_malloc(1);
 		p->filename = str;
 		p->mode = redirect;
 		p->next = NULL;
 	}
 	else
-	{
-		save = p;
-		new_list = (t_files *)malloc(sizeof(t_files));
-		while (p->next != NULL)
-			p = p->next;
-		p->next = new_list;
-		p = save;
-		new_list->filename = str;
-		new_list->mode = redirect;
-		new_list->next = NULL;
-	}
+		list_file_second(p, str, redirect);
 	return (p);
 }
 

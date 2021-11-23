@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:25:34 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:25:35 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 14:58:07 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*ft_chartrim(char *s1, char set)
 	while (end > start && s1[end - 1] == set)
 		end--;
 	str = (char *)malloc(sizeof(char) * ((end - start) + 1));
+	if (!str)
+		return (NULL);
 	while (start < end)
 	{
 		str[i] = s1[start];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:18:59 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/09 18:19:05 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:48:40 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ static void	delete_list_envp(t_envp **list, char *var)
 
 static int	unset_check(char *temp, char **var)
 {
+	if (*temp >= '0' && *temp <= '9')
+	{
+		ft_putstr_fd("minishell: unset: '", 2);
+		ft_putstr_fd(*var, 2);
+		ft_putstr_fd("' is a wrong variable\n", 2);
+		return (1);
+	}
 	while (*temp)
 	{
 		if (!((*temp >= '0' && *temp <= '9') || (*temp >= 'a' && \
@@ -62,7 +69,7 @@ static int	unset_check(char *temp, char **var)
 		{
 			ft_putstr_fd("minishell: unset: '", 2);
 			ft_putstr_fd(*var, 2);
-			ft_putstr_fd("' is a wrong variable.\n", 2);
+			ft_putstr_fd("' is a wrong variable\n", 2);
 			return (1);
 		}
 		temp++;

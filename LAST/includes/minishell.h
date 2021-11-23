@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 18:28:47 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/22 00:21:29 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 16:55:21 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,11 +160,14 @@ void	make_cmd_argv(t_data *data);
 int		help_fill_argv(char *str, int i);
 //process pid determination
 void	get_pid(t_data *data, char **envp);
+int		search_slash_n(char *array);
 //skipping quotes
 int		skip_quotes(char *str, int quotes, int i);
 //error definition
 void	ft_error(t_data *data, char *error);
+void	error_malloc(int check);
 //cleaning
+void	free_mnshll(char ***envp, t_data *data);
 void	clean_position(t_pos *list);
 void	clean_array(char **array, int size_array);
 void	clean_file(t_files *list);
