@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_redirect1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 18:24:56 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/21 18:08:45 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/24 18:07:20 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,23 +99,20 @@ void	make_heredoc_files(t_data *data)
 
 	status = 0;
 	signal(SIGINT, SIG_IGN);
-	pid = fork();
-	p = data->pipes;
-	if (pid == 0)
+	if (check_double_redirect(&(*data)))
 	{
-		signal(SIGINT, ctrl_c_redirect_heredoc);
-		while (p != NULL)
+		pid = fork();
+		p = data->pipes;
+		if (pid == 0)
 		{
-			if (p->infile)
-				make_red_here_file(p->infile, p->num);
-			p = p->next;
+			signal(SIGINT, ctrl_c_redirect_heredoc);
+			make_heredoc_fork(p);
 		}
-		exit (0);
+		else if (pid > 0)
+			waitpid (pid, &status, 0);
+		if (WEXITSTATUS(status) == 1)
+			g_question = -1;
+		if (pid == 0)
+			exit (0);
 	}
-	else if (pid > 0)
-		waitpid (pid, &status, 0);
-	if (WEXITSTATUS(status) == 1)
-		g_question = -1;
-	if (pid == 0)
-		exit (0);
 }

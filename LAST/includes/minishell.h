@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 18:28:47 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/23 16:55:21 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/24 18:08:34 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ void	error_heredoc_redrct_ctrl_d(char *name, int col);
 int		counter_double_redrct(t_files *infile);
 int		utils_for_read_here(int col, int num_cmd, char *filename);
 int		help_red_file(int col, char *name, char *fname);
+int		check_double_redirect(t_data *data);
+void	make_heredoc_fork(t_pipes *p);
+void	make_red_here_file(t_files *infile, int num_cmd);
 //signals
 void	ctrl_c(int status);
 void	ctrl_c_redirect_heredoc(int status);
