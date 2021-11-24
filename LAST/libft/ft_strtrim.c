@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 17:36:57 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 17:48:10 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 19:58:24 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		end--;
 	str = (char *)malloc(end - start + 1);
 	if (str == NULL)
-		return (NULL);
+		exit(1);
 	while (start < end)
 	{
 		str[i] = s1[start];

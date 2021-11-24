@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   work_without_pipes2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:29 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/18 16:37:26 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 21:19:18 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ int	no_pipes_dupping(t_data *data)
 		dup2(in_id, 0);
 	if (out_id != 0)
 		dup2(out_id, 1);
+	if (in_id)
+		close(in_id);
+	if (out_id)
+		close(out_id);
+	return (0);
+}
+
+int	built_in_dupping(t_data *data)
+{
+	int	in_id;
+	int	out_id;
+
+	in_id = get_in_fd(data, 0);
+	out_id = get_out_fd(data, 0);
 	if (in_id)
 		close(in_id);
 	if (out_id)

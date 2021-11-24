@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 18:28:47 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/24 18:08:34 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/24 18:34:39 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void	init_data(t_data *data, char ***envp);
 char	**refresh_envp(t_envp *env, char ***envp);
 //checking commands for builtin
 int		is_built_in(t_data *data, char **cmd, char ***envp);
+int		built_in_dupping(t_data *data);
 int		check_built_in(char *cmd);
 //builtin commands
 int		ft_cd(t_data *data, char **cmd, char ***envp);

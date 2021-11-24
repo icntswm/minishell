@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 17:25:17 by fkenned           #+#    #+#             */
-/*   Updated: 2021/04/26 17:25:20 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 19:56:04 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_calloc(size_t number, size_t size)
 	res = number * size;
 	sum = (void *)malloc(res);
 	if (!sum)
-		return (NULL);
+		exit(1);
 	ft_bzero(sum, res);
 	return (sum);
 }

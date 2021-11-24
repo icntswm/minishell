@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 17:27:39 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 17:53:08 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 19:56:19 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_itoa(int n)
 		n = -n;
 	str = malloc(sizeof(char) * (ft_itoa_len(n) + sign + 1));
 	if (str == NULL)
-		return (NULL);
+		exit(1);
 	i = 0;
 	while (n != 0)
 	{

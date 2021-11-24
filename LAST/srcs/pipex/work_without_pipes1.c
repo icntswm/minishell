@@ -6,23 +6,25 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:26 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/22 00:21:53 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/24 18:33:16 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	built_in_dupping(t_data *data)
+static int	check_b_in_cmd(t_data *data, char **cmd)
 {
-	int	in_id;
-	int	out_id;
-
-	in_id = get_in_fd(data, 0);
-	out_id = get_out_fd(data, 0);
-	if (in_id)
-		close(in_id);
-	if (out_id)
-		close(out_id);
+	if (((ft_strncmp(cmd[0], "pwd", 4) == 0) && cmd[1])
+		|| ((ft_strncmp(cmd[0], "env", 4) == 0) && cmd[1])
+		|| ((ft_strncmp(cmd[0], "export", 7) == 0) && cmd[1])
+		|| ((ft_strncmp(cmd[0], "echo", 5) == 0) && cmd[1])
+		|| (ft_strncmp(cmd[0], "unset", 6) == 0)
+		|| (ft_strncmp(cmd[0], "cd", 3) == 0)
+		|| (ft_strncmp(cmd[0], "exit", 5) == 0))
+	{
+		built_in_dupping(data);
+		return (1);
+	}
 	return (0);
 }
 
@@ -31,26 +33,25 @@ static int	check_built_in_cmd(t_data *data, char **cmd, char ***envp)
 	int	ret;
 
 	ret = -1;
-	if ((ft_strncmp(cmd[0], "export", 7) == 0) && cmd[1])
+	if (check_b_in_cmd(data, cmd))
 	{
-		built_in_dupping(data);
-		ret = ft_export(data, cmd, envp);
-	}
-	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
-	{
-		built_in_dupping(data);
-		ret = ft_unset(data, cmd, envp);
-	}
-	else if (ft_strncmp(cmd[0], "cd", 3) == 0)
-	{
-		built_in_dupping(data);
-		ret = ft_cd(data, cmd, envp);
-	}
-	else if (ft_strncmp(cmd[0], "exit", 5) == 0)
-	{
-		ft_putstr_fd("exit\n", 1);
-		built_in_dupping(data);
-		ret = ft_exit(cmd);
+		if ((ft_strncmp(cmd[0], "pwd", 4) == 0) && cmd[1])
+			ret = ft_pwd(cmd);
+		else if ((ft_strncmp(cmd[0], "env", 4) == 0) && cmd[1])
+			ret = ft_env(data, cmd);
+		else if ((ft_strncmp(cmd[0], "export", 7) == 0) && cmd[1])
+			ret = ft_export(data, cmd, envp);
+		else if ((ft_strncmp(cmd[0], "echo", 5) == 0) && cmd[1])
+			ret = ft_echo(cmd);
+		else if (ft_strncmp(cmd[0], "unset", 6) == 0)
+			ret = ft_unset(data, cmd, envp);
+		else if (ft_strncmp(cmd[0], "cd", 3) == 0)
+			ret = ft_cd(data, cmd, envp);
+		else if (ft_strncmp(cmd[0], "exit", 5) == 0)
+		{
+			ft_putstr_fd("exit\n", 1);
+			ret = ft_exit(cmd);
+		}
 	}
 	return (ret);
 }

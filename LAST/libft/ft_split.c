@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 19:01:50 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 17:49:56 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 21:06:43 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,6 @@ static char	*ft_split_mword(char const *s, char *word, int len_word, int i)
 	return (word);
 }
 
-static char	**ft_split_free(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-	return (NULL);
-}
-
 static char	**ft_split_len_word(char **array, char const *s, char c, int col)
 {
 	int	i;
@@ -82,7 +68,7 @@ static char	**ft_split_len_word(char **array, char const *s, char c, int col)
 		}
 		array[j] = (char *)malloc(sizeof(char) * (len_word + 1));
 		if (!array)
-			return (ft_split_free (array));
+			exit(1);
 		ft_split_mword(s, array[j], len_word, i);
 		len_word = 0;
 		j++;
@@ -106,7 +92,7 @@ char	**ft_split(char const *ss, char c)
 	col = ft_split_col(s, c);
 	array = (char **)malloc(sizeof(char *) * (col + 1));
 	if (!array)
-		return (NULL);
+		exit(1);
 	ft_split_len_word(array, s, c, col);
 	free(s);
 	return (array);

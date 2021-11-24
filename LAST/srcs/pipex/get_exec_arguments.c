@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_exec_arguments.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:18 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/18 16:37:31 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/23 21:24:53 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	**find_pathes(char *envp[])
 	}
 	if (!*envp)
 		return (NULL);
-	path_str = ft_strchr(path_str, '/');
+	path_str = ft_strchr(path_str, '=') + 1;
 	pathes = ftt_split(path_str, ':');
 	if (!pathes)
 		return (NULL);
