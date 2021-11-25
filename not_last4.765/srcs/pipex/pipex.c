@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:24 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/22 00:23:01 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/25 19:19:02 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ int	unlink_here_doc_files(t_data *data)
 	return (0);
 }
 
+static void	help(t_data *data)
+{
+	signal(SIGINT, ctrl_c);
+	signal(SIGQUIT, ctrl_slash);
+	unlink_here_doc_files(data);
+}
+
 int	pipex(t_data *data, char ***envp)
 {
 	int		**fd;
@@ -57,17 +64,17 @@ int	pipex(t_data *data, char ***envp)
 	if (data->col_pipes == 0)
 		return (work_without_pipes(data, envp));
 	fd = make_fds(data->col_pipes);
+	if (!fd)
+		return (2);
 	pid = malloc((data->col_pipes + 1) * sizeof(pid_t *));
 	if (!pid)
-		exit(EXIT_FAILURE);
+		return (2);
 	handle_multipipes(data, envp, fd, pid);
 	close_fds(data->col_pipes, fd);
 	i = 0;
 	while (i < data->col_pipes + 1)
 		waitpid(pid[i++], &status, 0);
-	signal(SIGINT, ctrl_c);
-	signal(SIGQUIT, ctrl_slash);
-	unlink_here_doc_files(data);
+	help(data);
 	free_fds(data->col_pipes, fd);
 	free(pid);
 	if (WIFEXITED(status))
