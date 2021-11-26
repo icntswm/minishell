@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   work_without_pipes1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:26 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/25 18:35:17 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 00:34:42 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	exec_process_help(t_data *data, char **cmd, char ***envp)
 		if (cmd != NULL)
 		{
 			execve(cmd[0], cmd, *envp);
-			exit (1);
+			exit (127);
 		}
 		else
-			exit (1);
+			exit (127);
 	}
 }
 

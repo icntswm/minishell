@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 18:28:47 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/25 18:40:41 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 00:40:10 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "libft.h"
+# include "../libft/libft.h"
 # include <signal.h>
 # include <fcntl.h>
 # include <sys/wait.h>
@@ -231,10 +231,9 @@ char	*make_filename(int i);
 int		handle_multipipes(t_data *data, char ***envp, int **fd, int *pid);
 int		unlink_here_doc_files(t_data *data);
 int		pipex(t_data *data, char ***envp);
-/////
 int		check_built_in_cmd(t_data *data, char **cmd, char ***envp);
-
+/*
 //error mac
-int		rl_replace_line(char *str, int num);
-
+// int		rl_replace_line(char *str, int num);
+*/
 #endif

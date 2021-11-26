@@ -6,7 +6,7 @@
 /*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:18:19 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/10 17:36:38 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/27 00:35:54 by fkenned          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	help_echo(char **cmd)
 	if (*cmd && ft_strncmp(*cmd, "-n", 3) == 0)
 	{
 		cmd++;
-		while (ft_strncmp(*cmd, "-n", 3) == 0)
+		while (*cmd && ft_strncmp(*cmd, "-n", 3) == 0)
 			cmd++;
 		while (*cmd)
 		{
@@ -37,7 +37,7 @@ int	ft_echo(char **cmd)
 	if (*cmd && **cmd == '-' && *(*cmd + 1) != 'n')
 	{
 		ft_putstr_fd("minishell: shell supp\
-orts only -n option for echo.\n", 2);
+orts only -n option for echo\n", 2);
 		return (228);
 	}
 	if (help_echo(cmd) == 0)
