@@ -3,21 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:18:19 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/27 00:35:54 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/27 17:35:13 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int	is_all_n(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (cmd[i] != '-')
+		return (0);
+	i++;
+	while (cmd[i])
+	{
+		if (cmd[i] != 'n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	help_echo(char **cmd)
 {
-	if (*cmd && ft_strncmp(*cmd, "-n", 3) == 0)
+	if (*cmd && is_all_n(*cmd))
 	{
 		cmd++;
-		while (*cmd && ft_strncmp(*cmd, "-n", 3) == 0)
+		while (*cmd && is_all_n(*cmd))
 			cmd++;
 		while (*cmd)
 		{
