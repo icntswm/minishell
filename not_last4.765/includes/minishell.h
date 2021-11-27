@@ -6,7 +6,7 @@
 /*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 18:28:47 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/27 18:09:43 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:12:41 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,6 @@ int		built_in_get_in_fd(t_data *data, int i);
 int		built_in_get_out_fd(t_data *data, int i, int fd, int final_fd);
 
 //error mac
-int		rl_replace_line(char *str, int num);
+// int		rl_replace_line(char *str, int num);
 
 #endif
