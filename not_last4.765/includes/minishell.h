@@ -6,7 +6,7 @@
 /*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 18:28:47 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/27 18:12:41 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 19:20:48 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,7 @@ int		check_built_in_cmd(t_data *data, char **cmd, char ***envp);
 /////////
 int		built_in_get_in_fd(t_data *data, int i);
 int		built_in_get_out_fd(t_data *data, int i, int fd, int final_fd);
+int		**close_and_free_fds(int **fd, int i);
 
 //error mac
 // int		rl_replace_line(char *str, int num);

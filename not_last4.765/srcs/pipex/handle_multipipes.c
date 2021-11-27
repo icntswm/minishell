@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_multipipes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:22 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/22 00:12:00 by fkenned          ###   ########.fr       */
+/*   Updated: 2021/11/27 19:12:42 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,12 @@ int	handle_multipipes(t_data *data, char ***envp, int **fd, int *pid)
 			child_process(data, envp, i, fd);
 		}
 		else if (pid[i] < 0)
-			exit(EXIT_FAILURE);
+		{
+			close_fds(data->col_pipes, fd);
+			free(pid);
+			perror("minisell");
+			return (2);
+		}
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:24 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/25 19:19:02 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 19:17:51 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,20 @@ static void	help(t_data *data)
 	unlink_here_doc_files(data);
 }
 
+int	make_pids_and_fds(int ***fd, t_data *data, pid_t **pid)
+{
+	*fd = make_fds(data->col_pipes);
+	if (!*fd)
+		return (2);
+	*pid = malloc((data->col_pipes + 1) * sizeof(pid_t *));
+	if (!*pid)
+	{
+		close_and_free_fds(*fd, data->col_pipes);
+		return (2);
+	}
+	return (0);
+}
+
 int	pipex(t_data *data, char ***envp)
 {
 	int		**fd;
@@ -63,13 +77,10 @@ int	pipex(t_data *data, char ***envp)
 
 	if (data->col_pipes == 0)
 		return (work_without_pipes(data, envp));
-	fd = make_fds(data->col_pipes);
-	if (!fd)
+	if (make_pids_and_fds(&fd, data, &pid))
 		return (2);
-	pid = malloc((data->col_pipes + 1) * sizeof(pid_t *));
-	if (!pid)
+	if (handle_multipipes(data, envp, fd, pid))
 		return (2);
-	handle_multipipes(data, envp, fd, pid);
 	close_fds(data->col_pipes, fd);
 	i = 0;
 	while (i < data->col_pipes + 1)
