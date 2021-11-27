@@ -19,7 +19,8 @@ PIPEX_SRC = ft_split.c\
 			work_without_pipes1.c\
 			work_without_pipes2.c\
 			dupping.c\
-			check_built_in.c
+			check_built_in.c\
+			built_in_get_fd.c
 
 BUILTIN_SRC = built_in_cmds.c\
 			ft_cd.c\

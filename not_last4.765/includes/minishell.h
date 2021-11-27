@@ -6,7 +6,7 @@
 /*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 18:28:47 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/27 17:39:55 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:09:43 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,8 +232,11 @@ int		handle_multipipes(t_data *data, char ***envp, int **fd, int *pid);
 int		unlink_here_doc_files(t_data *data);
 int		pipex(t_data *data, char ***envp);
 int		check_built_in_cmd(t_data *data, char **cmd, char ***envp);
+/////////
+int		built_in_get_in_fd(t_data *data, int i);
+int		built_in_get_out_fd(t_data *data, int i, int fd, int final_fd);
 
 //error mac
-// int		rl_replace_line(char *str, int num);
+int		rl_replace_line(char *str, int num);
 
 #endif

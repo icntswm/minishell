@@ -6,7 +6,7 @@
 /*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:44:59 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/25 18:45:00 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:57:12 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ static int	check_b_in_cmd(t_data *data, char **cmd)
 		|| (ft_strncmp(cmd[0], "unset", 6) == 0)
 		|| (ft_strncmp(cmd[0], "cd", 3) == 0))
 	{
-		built_in_dupping(data);
+		if (built_in_dupping(data) == -1)
+			return (-2);
 		return (1);
 	}
 	else if (ft_strncmp(cmd[0], "exit", 5) == 0)
 	{
-		exit_dupping(data);
+		if (exit_dupping(data) == -1)
+			return (-2);
 		return (1);
 	}
 	return (0);
@@ -60,14 +62,18 @@ static int	check_b_in_cmd2(t_data *data, char **cmd, char ***envp)
 int	check_built_in_cmd(t_data *data, char **cmd, char ***envp)
 {
 	int	ret;
+	int	ret2;
 	int	temp1;
 	int	temp2;
 
 	temp1 = dup(0);
 	temp2 = dup(1);
 	ret = -1;
-	if (check_b_in_cmd(data, cmd))
+	ret2 = check_b_in_cmd(data, cmd);
+	if (ret2 == 1)
 		ret = check_b_in_cmd2(data, cmd, envp);
+	else if (ret2 == -2)
+		return (0);
 	dup2(temp1, 0);
 	dup2(temp2, 1);
 	close(temp1);
