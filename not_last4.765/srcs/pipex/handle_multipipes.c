@@ -6,7 +6,7 @@
 /*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:22 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/27 19:12:42 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 19:30:17 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	handle_multipipes(t_data *data, char ***envp, int **fd, int *pid)
 		else if (pid[i] < 0)
 		{
 			close_fds(data->col_pipes, fd);
+			free_fds(data->col_pipes, fd);
 			free(pid);
 			perror("minisell");
 			return (2);

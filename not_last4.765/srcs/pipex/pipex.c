@@ -6,7 +6,7 @@
 /*   By: squickfi <squickfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:19:24 by squickfi          #+#    #+#             */
-/*   Updated: 2021/11/27 19:17:51 by squickfi         ###   ########.fr       */
+/*   Updated: 2021/11/27 19:28:08 by squickfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	make_pids_and_fds(int ***fd, t_data *data, pid_t **pid)
 	*pid = malloc((data->col_pipes + 1) * sizeof(pid_t *));
 	if (!*pid)
 	{
-		close_and_free_fds(*fd, data->col_pipes);
+		close_fds(data->col_pipes, fd);
+		free_fds(data->col_pipes, fd);
 		return (2);
 	}
 	return (0);
