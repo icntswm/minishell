@@ -38,7 +38,7 @@ relative or absolute path)
 > 10 - Pipes `|` The output of each command in the pipeline is connected via a pipe to the
 input of the next command
 > 
-> 11 - Environment variables ($ followed by characters) should expand to their values
+> 11 - Environment variables (`$` followed by characters) should expand to their values
 > 
 > 12 - `$?` should expand to the exit status of the most recently executed foreground
 pipeline
