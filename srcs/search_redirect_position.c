@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   search_redirect_position.c                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fkenned <fkenned@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 18:25:40 by fkenned           #+#    #+#             */
-/*   Updated: 2021/11/06 18:25:42 by fkenned          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 t_pos	*help_position_file(t_pos *list, char*str, int i, char redrct)
