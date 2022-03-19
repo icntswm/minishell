@@ -227,6 +227,6 @@ int		built_in_get_out_fd(t_data *data, int i, int fd, int final_fd);
 int		**close_and_free_fds(int **fd, int i, int pipes_num);
 
 //error mac
-//int		rl_replace_line(char *str, int num);
+int		rl_replace_line(char *str, int num);
 
 #endif

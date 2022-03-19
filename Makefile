@@ -2,7 +2,7 @@ NAME = minishell
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -g -I includes/ -I libft/
+CFLAGS = -Wall -Wextra -Werror -g -I includes/ -I libft/ -MMD
 
 LIBFT = -L libft/ -lft
 
@@ -74,25 +74,23 @@ SRC = $(addprefix srcs/pipex/, $(PIPEX_SRC))\
 	$(addprefix srcs/, $(MAIN_SRC))\
 
 OBJ = $(SRC:c=o)
+DEP = $(OBJ:o=d)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lreadline -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/ -I/Users/$(USER)/.brew/Cellar/readline/8.1/include
-
-%.o: %.c $(HEADERS)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lreadline -L./readline/lib/ -I./readline/include
 
 clean:
 	make fclean -C libft/
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(DEP)
 
-fclean:
-	make fclean -C libft/
-	rm -f $(OBJ)
+fclean: clean
 	rm -f $(NAME)
 
 re:	fclean all
 
 .PHONY: all clean fclean re
+
+include $(wildcard $(DEP))
