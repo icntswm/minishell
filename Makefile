@@ -80,7 +80,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lreadline -L./readline/lib/ -I./readline/include
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lreadline -L/readline/lib/ -I/readline/include
 
 clean:
 	make fclean -C libft/
