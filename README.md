@@ -8,15 +8,12 @@ In this project, it was necessary to implement:
 > 2 - Not use more than one global variable, think about it and be ready to explain why
 you do it
 > 
-> 3 - Not use more than one global variable, think about it and be ready to explain why
-you do it
+> 3 - Have a working History
 > 
-> 4 - Have a working History
-> 
-> 5 - Search and launch the right executable (based on the PATH variable or by using
+> 4 - Search and launch the right executable (based on the PATH variable or by using
 relative or absolute path)
 > 
-> 6 - It must implement the builtins:
+> 5 - It must implement the builtins:
 > > * `echo` with option -n
 > > * `cd` with only a relative or absolute path
 > > * `pwd` with no options
@@ -25,25 +22,25 @@ relative or absolute path)
 > > * `env` with no options or arguments
 > > * `exit` with no options
 >
-> 7 - `’` inhibit all interpretation of a sequence of characters
+> 6 - `’` inhibit all interpretation of a sequence of characters
 > 
-> 8 - `"` inhibit all interpretation of a sequence of characters except for `$`
+> 7 - `"` inhibit all interpretation of a sequence of characters except for `$`
 > 
-> 9 - Redirections:
+> 8 - Redirections:
 > > * `<` should redirect input
 > > * `>` should redirect output
 > > * `<<` read input from the current source until a line containing only the delimiter is seen. It doesn’t need to update history!
 > > * `>>` should redirect output with append mode
 > 
-> 10 - Pipes `|` The output of each command in the pipeline is connected via a pipe to the
+> 9 - Pipes `|` The output of each command in the pipeline is connected via a pipe to the
 input of the next command
 > 
-> 11 - Environment variables (`$` followed by characters) should expand to their values
+> 10 - Environment variables (`$` followed by characters) should expand to their values
 > 
-> 12 - `$?` should expand to the exit status of the most recently executed foreground
+> 11 - `$?` should expand to the exit status of the most recently executed foreground
 pipeline
 > 
-> 13 - `ctrl-C` `ctrl-D` `ctrl-\` should work like in bash. When interactive:
+> 12 - `ctrl-C` `ctrl-D` `ctrl-\` should work like in bash. When interactive:
 > > * `ctrl-C` print a new prompt on a newline
 > > * `ctrl-D` exit the shell
 > > * `ctrl-\` do nothing
